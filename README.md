@@ -2,7 +2,7 @@
 
 [You can try the deployed app here!](https://tororosoba0534-dnd.herokuapp.com/) (touch-screen devices such as mobile phones are NOT supported)
 
-This app implement drag-and-drop utility which enables you to
+This app provides drag-and-drop utility which enables you to
 
 - select multiple items
 - drag and drop all of them at once
