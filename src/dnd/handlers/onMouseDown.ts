@@ -7,15 +7,11 @@ export const onMouseDown = (
   props: DndProps,
   handlingBtnElm: React.RefObject<HTMLButtonElement>
 ) => {
-  console.log("mouse down");
-
   const dndInfo = props.dndInfo.current;
   const currentBlock = dndInfo.allBlocks[props.index];
   if (!currentBlock) return;
-  console.log("currentBlock exists");
 
   if (!currentBlock.isSelected) return;
-  console.log("mouse down selected");
 
   if (handlingBtnElm.current) {
     const btn = handlingBtnElm.current;
@@ -62,7 +58,6 @@ export const onMouseDown = (
         const { top, bottom, left } = block.elm.getBoundingClientRect();
         const line = (top + bottom) / 2;
         if (movingTopY < line) {
-          console.log("hover detected!");
           hoveredBefore.push(index);
           shouldSetAllBlocks = true;
           newHovereds[block.key] = { xBefore: left, yBefore: top };
@@ -71,7 +66,6 @@ export const onMouseDown = (
         const { top, bottom, left } = block.elm.getBoundingClientRect();
         const line = (top + bottom) / 2;
         if (movingButtomY > line) {
-          console.log("hover detected!");
           hoveredAfter.push(index);
           shouldSetAllBlocks = true;
           newHovereds[block.key] = { xBefore: left, yBefore: top };

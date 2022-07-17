@@ -19,14 +19,8 @@ export const DndItem = (props: DndProps) => {
   const handlingBtnElm = useRef<HTMLButtonElement>(null);
   const callbackRef = (elm: HTMLElement | null) => {
     if (!elm) {
-      console.log(`${props.index} unmounted`);
       return;
     }
-
-    console.log(`${props.index} mounted`);
-    console.log(`props.isSelected: ${props.isSelected}`);
-    console.log(`props.rblock.isSelected: ${props.rblock.isSelected}`);
-    console.log(`isSelectedInner: ${isSelectedInner}`);
 
     const leadingBlock = props.dndInfo.current.leadingBlock;
     if (!leadingBlock) {
