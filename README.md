@@ -1,5 +1,7 @@
 # Multi-draggable drag-and-drop functionality
 
+[You can try the deployed app here!](https://tororosoba0534-dnd.herokuapp.com/) (touch-screen devices such as mobile phones are NOT supported)
+
 This app implement drag-and-drop utility which enables you to
 
 - select multiple items
@@ -8,6 +10,12 @@ This app implement drag-and-drop utility which enables you to
 I used to plan to implement this functionality in [Collab-Note-YJS](https://github.com/tororosoba0534/collab-note-yjs-client), found to be very hard task.
 
 If you succeed in combine this utility into [ProseMirror](https://prosemirror.net/) or [Tip Tap](https://tiptap.dev/), please give me advice😭
+
+## Tech stack
+
+- TypeScript
+- React
+- Tailwind CSS
 
 ## Reference
 
