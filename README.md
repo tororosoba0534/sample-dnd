@@ -1,4 +1,4 @@
-# Mulit-draggable drag-and-drop functionality
+# Multi-draggable drag-and-drop functionality
 
 This app implement drag-and-drop utility which enables you to
 
