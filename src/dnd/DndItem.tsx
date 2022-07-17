@@ -1,4 +1,5 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
+import { DragHandeSvg } from "../DragHandleSvg";
 import { onMouseDown } from "./handlers/onMouseDown";
 import { onMouseMove } from "./handlers/onMouseMove";
 import { onMouseUp } from "./handlers/onMouseUp";
@@ -9,23 +10,32 @@ export type DndProps = {
   rblock: RawBlock;
   setRawBlocks: React.Dispatch<React.SetStateAction<(RawBlock | null)[]>>;
   index: number;
+  isSelected: boolean;
   dndInfo: React.MutableRefObject<DnDInfo>;
 };
 
 export const DndItem = (props: DndProps) => {
+  const [isSelectedInner, setIsSelectedInner] = useState(props.isSelected);
   const handlingBtnElm = useRef<HTMLButtonElement>(null);
   const callbackRef = (elm: HTMLElement | null) => {
     if (!elm) {
-      console.log("elm removed.");
+      console.log(`${props.index} unmounted`);
       return;
     }
 
-    console.log("elm mounted");
+    console.log(`${props.index} mounted`);
+    console.log(`props.isSelected: ${props.isSelected}`);
+    console.log(`props.rblock.isSelected: ${props.rblock.isSelected}`);
+    console.log(`isSelectedInner: ${isSelectedInner}`);
+
     const leadingBlock = props.dndInfo.current.leadingBlock;
     if (!leadingBlock) {
-      console.log("elm mounted.");
       props.dndInfo.current.allBlocks[props.index] = new Block(
-        props.rblock,
+        {
+          key: props.rblock.key,
+          value: props.rblock.value,
+          isSelected: isSelectedInner,
+        },
         elm
       );
       return;
@@ -52,27 +62,34 @@ export const DndItem = (props: DndProps) => {
 
   return (
     <div
-      className="w-40 h-10 p-2 flex items-center gap-3"
+      className="w-52 h-10 p-2 flex items-center gap-3 text-gray-800"
+      style={{
+        backgroundColor: isSelectedInner ? "red" : "#bef264",
+        zIndex: isSelectedInner ? 10 : 0,
+      }}
       key={props.rblock.key}
       ref={callbackRef}
     >
       <button
-        className="h-full bg-lime-100 rounded-lg px-2"
+        className="h-full w-24 text-center bg-lime-100 hover:bg-lime-50 rounded-lg px-2 text-gray-800"
         onClick={(e) => {
           e.stopPropagation();
           props.dndInfo.current.allBlocks[props.index]?.toggleSelect();
+          setIsSelectedInner((prev) => !prev);
         }}
       >
-        SELECT
+        {isSelectedInner ? "DESELECT" : "SELECT"}
       </button>
       {props.rblock.value}
       <button
         ref={handlingBtnElm}
-        className="h-full bg-lime-100 rounded-lg px-2"
+        className="h-full bg-lime-100 hover:bg-lime-50 rounded-lg px-2"
         onMouseDown={onMouseDownWrapper}
-        style={{ cursor: "grab" }}
+        style={{ cursor: "grab", display: isSelectedInner ? "block" : "none" }}
       >
-        ・
+        <div className="w-4 h-7">
+          <DragHandeSvg />
+        </div>
       </button>
     </div>
   );

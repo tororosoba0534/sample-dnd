@@ -41,19 +41,21 @@ export class Block extends RawBlock {
   constructor(rawBlock: RawBlock, elm: HTMLElement) {
     super(rawBlock);
     this.elm = elm;
-    elm.style.backgroundColor = this.isSelected ? "red" : "#bef264";
+    // elm.style.backgroundColor = this.isSelected ? "red" : "#bef264";
   }
   select = () => {
     this.isSelected = true;
-    this.elm.style.backgroundColor = "red";
-    this.elm.style.zIndex = "10";
+    // this.elm.style.backgroundColor = "red";
+    // this.elm.style.zIndex = "10";
   };
   deselect = () => {
     this.isSelected = false;
-    this.elm.style.backgroundColor = "#bef264";
-    this.elm.style.zIndex = "0";
+    // this.elm.style.backgroundColor = "#bef264";
+    // this.elm.style.zIndex = "0";
   };
   toggleSelect = () => {
+    console.log("toggleselect in method");
+
     if (this.isSelected) {
       this.deselect();
     } else {

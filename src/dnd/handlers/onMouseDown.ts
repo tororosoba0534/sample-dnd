@@ -7,11 +7,15 @@ export const onMouseDown = (
   props: DndProps,
   handlingBtnElm: React.RefObject<HTMLButtonElement>
 ) => {
+  console.log("mouse down");
+
   const dndInfo = props.dndInfo.current;
   const currentBlock = dndInfo.allBlocks[props.index];
   if (!currentBlock) return;
+  console.log("currentBlock exists");
 
   if (!currentBlock.isSelected) return;
+  console.log("mouse down selected");
 
   if (handlingBtnElm.current) {
     const btn = handlingBtnElm.current;
