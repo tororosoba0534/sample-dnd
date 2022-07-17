@@ -1,0 +1,6 @@
+export const dndConsts = {
+  GATHER_VAL: 10,
+  HOVER_CHECK_MS: 300,
+  MUX_REORDERING_MS: 1000,
+  ANIMATION_MS: 300,
+};
